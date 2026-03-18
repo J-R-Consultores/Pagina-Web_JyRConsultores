@@ -12,12 +12,12 @@ import logoImg from '../assets/LOGO_5.png';
          data-aos="fade-right" 
          data-aos-duration="1200" 
          data-aos-once="true">
-      <a href="/" class="block">
+      <a href="/" aria-label="Ir al inicio de J&R Consultores" class="block">
         <Image 
           src={logoImg} 
           alt="J&R Consultores" 
           id="nav-logo"
-          class="h-20 w-auto transition-all duration-300 hover:brightness-110"
+          class="h-28 w-auto transition-all duration-300 hover:brightness-110"
           loading="eager" 
         />
       </a>
@@ -25,18 +25,18 @@ import logoImg from '../assets/LOGO_5.png';
 
     <div class="hidden md:block">
       <div class="ml-10 flex items-baseline space-x-8 font-medium">
-        <a href="#" class="group relative px-2 py-1 text-white transition-all duration-300" data-aos="fade-down" data-aos-delay="200">
+        <a href="#inicio" class="group relative px-2 py-1 text-white transition-all duration-300" data-aos="fade-down" data-aos-delay="200">
           <span>Inicio</span>
           <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-300 transition-all duration-300 group-hover:w-full"></span>
         </a>
-        
-        <a href="#" class="group relative px-2 py-1 text-white transition-all duration-300" data-aos="fade-down" data-aos-delay="400">
-          <span>Servicios</span>
+
+        <a href="#nosotros" class="group relative px-2 py-1 text-white transition-all duration-300" data-aos="fade-down" data-aos-delay="400">
+          <span>Nosotros</span>
           <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-300 transition-all duration-300 group-hover:w-full"></span>
         </a>
         
-        <a href="#" class="group relative px-2 py-1 text-white transition-all duration-300" data-aos="fade-down" data-aos-delay="600">
-          <span>Nosotros</span>
+        <a href="#servicios" class="group relative px-2 py-1 text-white transition-all duration-300" data-aos="fade-down" data-aos-delay="600">
+          <span>Servicios</span>
           <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-300 transition-all duration-300 group-hover:w-full"></span>
         </a>
 
@@ -53,6 +53,7 @@ import logoImg from '../assets/LOGO_5.png';
 
 <script>
   import AOS from 'aos';
+  import 'aos/dist/aos.css'
 
   // Inicializar AOS
   AOS.init({
@@ -69,20 +70,19 @@ import logoImg from '../assets/LOGO_5.png';
         // Estado contraído: py-2 y fondo un poco más sólido o con sombra
         nav.classList.replace('py-5', 'py-2');
         nav.classList.add('shadow-xl', 'backdrop-blur-sm');
-        logo.classList.replace('h-20', 'h-14');
+        logo.classList.replace('h-28', 'h-14');
       } else {
         // Estado original
         nav.classList.replace('py-2', 'py-5');
         nav.classList.remove('shadow-xl', 'backdrop-blur-sm');
-        logo.classList.replace('h-14', 'h-20');
+        logo.classList.replace('h-14', 'h-28');
       }
     });
   }
 </script>
 
 <style>
-  /* Mejoramos la visibilidad del subrayado sobre el fondo azul */
   .group:hover span {
-    color: #e0f2fe; /* light blue 100 */
+    color: #e0f2fe;
   }
 </style>

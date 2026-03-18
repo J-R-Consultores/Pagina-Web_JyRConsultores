@@ -9,7 +9,7 @@ interface CardItem {
 
 interface Props {
   tituloSeccion: string;
-  descripcionSeccion?: string; // <-- NUEVA PROP
+  descripcionSeccion?: string;
   items: CardItem[];
   textoBoton?: string;
   enlaceBoton?: string;
@@ -25,7 +25,6 @@ const {
   bgColor = "bg-[#fdfeff]",
 } = Astro.props;
 
-// Lógica anti-roturas: Si son 3 items, usa 3 columnas y reduce el ancho máximo. Si son 4, usa 4.
 const gridClasses =
   items.length === 3
     ? "grid-cols-1 md:grid-cols-3 max-w-5xl"

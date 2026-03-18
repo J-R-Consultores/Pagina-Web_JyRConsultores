@@ -1,0 +1,113 @@
+---
+import { Icon } from "astro-icon/components";
+
+interface Props {
+  items: {
+    titulo: string;
+    descripcion: string;
+    icon: string;
+  }[];
+}
+
+const { items } = Astro.props;
+---
+
+<div class="swiper mySwiper py-12">
+  <div class="swiper-wrapper">
+    {items.map((item) => (
+      <div class="swiper-slide bg-white p-8 rounded-2xl shadow-xl border border-slate-100 flex flex-col items-center text-center">
+        <div class="w-16 h-16 bg-blue-600 rounded-lg flex items-center justify-center mb-6 text-white">
+          <Icon name={item.icon} class="w-8 h-8" />
+        </div>
+        <h3 class="text-xl font-bold text-slate-900 mb-4">{item.titulo}</h3>
+        <p class="text-slate-600 leading-relaxed">{item.descripcion}</p>
+      </div>
+    ))}
+  </div>
+  <div class="swiper-pagination !-bottom-2"></div>
+</div>
+
+<style>
+  @reference "../styles/global.css";
+
+  .swiper {
+    width: 100%;
+    padding-top: 40px; 
+    padding-bottom: 80px;
+    overflow: visible !important;
+  }
+
+  .swiper-slide {
+    width: 300px; 
+    height: auto;
+    min-height: 360px;
+    
+    filter: none !important; 
+    opacity: 0.8;
+    transition: transform 0.4s ease, opacity 0.4s ease;
+    
+    @apply bg-white p-8 rounded-3xl shadow-lg border border-slate-100 flex flex-col items-center text-center;
+  }
+
+  .swiper-slide-active {
+    opacity: 1;
+    transform: scale(1.1);
+    @apply border-blue-600 shadow-xl shadow-blue-500/10;
+  }
+</style>
+
+<script>
+  import Swiper from 'swiper';
+  import { EffectCoverflow, Pagination, Autoplay } from 'swiper/modules';
+  
+  import 'swiper/css';
+  import 'swiper/css/effect-coverflow';
+  import 'swiper/css/pagination';
+
+  const initSwiper = () => {
+    const container = document.querySelector('.mySwiper');
+    if (!container) return;
+
+    new Swiper('.mySwiper', {
+      modules: [EffectCoverflow, Pagination, Autoplay],
+   
+      loop: false, 
+      rewind: true,
+      
+      centeredSlides: true,
+      slidesPerView: 'auto',
+      grabCursor: true,
+      
+      threshold: 5,
+      resistanceRatio: 0.85,
+      edgeSwipeDetection: true,
+
+      autoplay: {
+        delay: 3000,
+        disableOnInteraction: false,
+        pauseOnMouseEnter: true,
+      },
+      
+      speed: 800,
+
+      effect: 'coverflow',
+      coverflowEffect: {
+        rotate: 5,
+        stretch: 0,
+        depth: 100, 
+        modifier: 2,    
+        slideShadows: false, 
+      },
+
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+        dynamicBullets: true,
+      },
+    });
+  };
+
+  initSwiper();
+  document.addEventListener('astro:page-load', initSwiper);
+  document.addEventListener('astro:after-swap', initSwiper);
+</script>

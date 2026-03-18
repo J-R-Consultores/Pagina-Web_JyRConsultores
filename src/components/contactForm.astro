@@ -17,7 +17,7 @@ const servicios = [
 ];
 ---
 
-<section class="py-24 bg-white px-6 font-sans">
+<section id="contacto" class="py-24 bg-white px-6 font-sans">
     <div class="max-w-4xl mx-auto">
         <div class="text-center mb-16">
             <h2 class="text-4xl font-black text-slate-900 tracking-tight mb-3">
@@ -154,7 +154,7 @@ const servicios = [
                     class="text-sm text-slate-600 cursor-pointer"
                 >
                     Acepto las <a
-                        href="#"
+                        href="/aviso-privacidad"
                         class="text-blue-600 font-semibold hover:underline"
                         >Políticas de Privacidad</a
                     > y el tratamiento de mis datos personales.
@@ -178,7 +178,6 @@ const servicios = [
         e.preventDefault();
         const formData = new FormData(form);
 
-        // La magia de Sonner: Maneja todo el ciclo de vida del fetch
         toast.promise(
             fetch("/api/send-email", {
                 method: "POST",
