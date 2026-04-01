@@ -31,9 +31,9 @@ const servicios = [
 
         <form
             class="bg-[#fdfeff] p-8 md:p-12 rounded-[2rem] shadow-[0_10px_40px_-15px_rgba(0,0,0,0.08)] border border-slate-100"
+            action="/api/send-email"
             method="POST"
             id="contactForm"
-            name="contacto-consultora" data-netlify="true" netlify-honeypot="bot-field"
         >
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
                 <div class="flex flex-col gap-2">
@@ -138,7 +138,6 @@ const servicios = [
                     rows="4"
                     placeholder="Describe brevemente el motivo de tu consulta..."
                     class="px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 focus:bg-white focus:ring-2 focus:ring-blue-600 focus:border-transparent transition-all outline-none resize-none"
-                    required
                 ></textarea>
             </div>
 
@@ -172,4 +171,78 @@ const servicios = [
     </div>
 </section>
 
+<script>
+    import Swal from 'sweetalert2';
 
+    // Configuración global del Toast de SweetAlert2 (reutilizable)
+    const Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end', // Esquina superior derecha
+        showConfirmButton: false, // Sin botones, se cierra solo
+        timer: 4000, // 4 segundos
+        timerProgressBar: true,
+        didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+        },
+        // Personalización de colores usando la paleta del sitio
+        customClass: {
+            popup: 'rounded-xl border border-slate-200 shadow-lg',
+            title: 'text-sm font-bold text-slate-900',
+        },
+        background: '#ffffff',
+    });
+
+    const form = document.getElementById("contactForm") as HTMLFormElement;
+
+    form?.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        
+        // Bloqueo del botón para UX
+        const submitBtn = form.querySelector('button[type="submit"]') as HTMLButtonElement;
+        submitBtn.disabled = true;
+        submitBtn.innerText = "Procesando...";
+
+        const formData = new FormData(form);
+
+        try {
+            const response = await fetch("/api/send-email", {
+                method: "POST",
+                body: formData,
+            });
+
+            const result = await response.json();
+
+            if (response.ok && result.success) {
+                // Notificación Toast de ÉXITO
+                Toast.fire({
+                    icon: 'success',
+                    title: '¡Consulta enviada con éxito!',
+                    // Personalizamos la barra de progreso con el azul del sitio
+                    willOpen: (toast) => {
+                        const progressBar = toast.querySelector('.swal2-timer-progress-bar') as HTMLElement;
+                        if (progressBar) progressBar.style.backgroundColor = '#3b82f6';
+                    }
+                });
+                form.reset();
+            } else {
+                throw new Error(result.message || 'Error desconocido');
+            }
+        } catch (error) {
+            // Notificación Toast de ERROR
+            Toast.fire({
+                icon: 'error',
+                title: 'Hubo un error al enviar tu mensaje.',
+                text: 'Por favor intenta más tarde.',
+                willOpen: (toast) => {
+                    const progressBar = toast.querySelector('.swal2-timer-progress-bar') as HTMLElement;
+                    if (progressBar) progressBar.style.backgroundColor = '#ef4444';
+                }
+            });
+        } finally {
+            // Restauración del botón
+            submitBtn.disabled = false;
+            submitBtn.innerText = "Solicitar Asesoría";
+        }
+    });
+</script>
