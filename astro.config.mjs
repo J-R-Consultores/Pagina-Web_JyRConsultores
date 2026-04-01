@@ -7,7 +7,10 @@ import netlify from '@astrojs/netlify';
 
 import react from '@astrojs/react';
 
+import sitemap from '@astrojs/sitemap';
+
 export default defineConfig({
+  site: 'https://jyrconsultoresmx.com/',
   vite: {
     plugins: [tailwindcss()],
   },
@@ -17,7 +20,7 @@ export default defineConfig({
       mdi: ['*'], // Esto permite usar cualquier icono de la colección MDI
       lucide: ['*'], // Si decides usar los que te pasé antes
     },
-  }), react()],
+  }), react(), sitemap()],
   output: 'static',
   adapter: netlify(),
 });
