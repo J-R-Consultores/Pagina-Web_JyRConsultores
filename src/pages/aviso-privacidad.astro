@@ -1,0 +1,94 @@
+---
+import Layout from "../layouts/Layout.astro";
+import "../styles/global.css";
+import { Image } from 'astro:assets';
+import logoImg from '../assets/LOGO_5.png'; 
+---
+
+<Layout title="Aviso Privacidad">
+  <header class="bg-linear-to-b from-[#112A40] to-[#537FA6] border-b border-gray-200 py-4 px-6 md:px-18 flex justify-between items-center shadow-sm">
+    <div class="shrink-0" 
+         data-aos="fade-right" 
+         data-aos-duration="1200" 
+         data-aos-once="true">
+      <a href="/" aria-label="Ir al inicio de J&R Consultores" class="block">
+        <Image 
+          src={logoImg} 
+          alt="J&R Consultores" 
+          id="nav-logo"
+          class="h-20 w-auto transition-all duration-300 hover:brightness-110"
+          loading="eager" 
+        />
+      </a>
+    </div>
+    </div>
+    
+    <nav>
+      <a href="/" class="group relative px-2 py-1 text-white transition-all duration-300" data-aos="fade-down" data-aos-delay="200">
+        <span>Inicio</span>
+        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-300 transition-all duration-300 group-hover:w-full"></span>
+      </a>
+    </nav>
+  </header>
+
+    <div class="max-w-4xl mx-auto bg-white p-8 md:p-12 shadow-sm rounded-lg">
+      <h1 class="text-3xl md:text-4xl font-bold mb-8 border-b-2 border-[#537FA6] pb-4">
+        Aviso de Privacidad
+      </h1>
+
+      <p class="mb-6 leading-relaxed">
+        En cumplimiento con las leyes de protección de datos personales, ponemos a su disposición el presente Aviso de Privacidad para informarle sobre el tratamiento que se le dará a sus datos.
+      </p>
+
+      <div class="space-y-8">
+        <section>
+          <h2 class="text-xl font-semibold mb-3 text-[#566E8A]">1. Datos Personales que Recabamos</h2>
+          <p>Para las finalidades señaladas en este aviso, solicitamos los siguientes datos de contacto:</p>
+          <ul class="list-disc ml-6 mt-2 space-y-1">
+            <li>Nombre completo</li>
+            <li>Nombre de la empresa</li>
+            <li>Correo electrónico</li>
+            <li>Número de teléfono</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2 class="text-xl font-semibold mb-3 text-[#566E8A]">2. Finalidad del Tratamiento</h2>
+          <p>Sus datos serán utilizados exclusivamente para:</p>
+          <ul class="list-disc ml-6 mt-2 space-y-1">
+            <li>Atender sus solicitudes de información o consultoría.</li>
+            <li>Establecer contacto directo para dar seguimiento a sus requerimientos.</li>
+            <li>Enviar propuestas comerciales relacionadas con nuestros servicios.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2 class="text-xl font-semibold mb-3 text-[#566E8A]">3. Seguridad y Confidencialidad</h2>
+          <p>
+            Nos comprometemos a adoptar las medidas de seguridad administrativas, técnicas y físicas necesarias para proteger sus datos personales contra daño, pérdida, alteración o uso no autorizado.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-xl font-semibold mb-3 text-[#566E8A]">4. Derechos ARCO</h2>
+          <p>
+            Usted tiene derecho a conocer qué datos tenemos de usted (Acceso), solicitar su corrección (Rectificación), eliminarlos de nuestros registros (Cancelación) u oponerse al uso de los mismos para fines específicos (Oposición).
+          </p>
+          <p class="mt-2 italic text-sm">
+            Para ejercer estos derechos, puede enviar una solicitud al correo: <span class="text-[#537FA6] font-medium">contacto@tusitio.com</span>
+          </p>
+        </section>
+      </div>
+    </div>
+    <div class="py-12 flex justify-center bg-[#F0F0F2]">
+      <a href="/" 
+         class="group flex items-center px-8 py-3 bg-[#537FA6] hover:bg-[#112A40] text-white font-medium rounded-lg shadow-md transition-all duration-300 transform hover:-translate-y-1">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3 transition-transform group-hover:-translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+        </svg>     
+        Volver al inicio
+      </a>
+    </div>
+  </section>
+</Layout>

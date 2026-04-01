@@ -1,36 +1,276 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Card from '../components/Card.astro';
-import Navbar from '../components/Navbar.astro';
-import Footer from '../components/Footer.astro';
-import '../styles/global.css';
+import Layout from "../layouts/Layout.astro";
+import Navbar from "../components/Navbar.astro";
+import Footer from "../components/Footer.astro";
+import ContactForm from "../components/contactForm.astro";
+import { Image } from "astro:assets";
+import imagen1 from "../assets/IMAGEN-1.jpg";
+import imagen2 from "../assets/IMAGEN-2.jpg";
+import { Icon } from "astro-icon/components";
+import "../styles/global.css";
+import Carousel3D from "../components/Carousel3D.astro";
+
+const serviciosFiscales = [
+  {
+    titulo: "Cumplimiento Fiscal",
+    descripcion:
+      "Declaraciones mensuales, anuales y control de obligaciones fiscales.",
+    icon: "lucide:shield-check",
+  },
+  {
+    titulo: "Gestión de Ingresos Mixtos",
+    descripcion:
+      "Integración y optimización de ingresos por diferentes fuentes.",
+    icon: "lucide:layers",
+  },
+  {
+    titulo: "Regularización Fiscal",
+    descripcion:
+      "Corrección de inconsistencias, declaraciones omitidas y evación del SAT.",
+    icon: "lucide:file-text",
+  },
+  {
+    titulo: "Prevención de Riesgos",
+    descripcion: "Análisis y estrategias para minimizar riesgos fiscales.",
+    icon: "lucide:search-check",
+  },
+];
+
+const puntosElegirnos = [
+  {
+    titulo: "Atención Personalizada",
+    descripcion:
+      "Permite el cumplimiento de tus necesidades especificas.",
+    icon: "lucide:award",
+  },
+  {
+    titulo: "Enfoque Preventivo",
+    descripcion:
+      "Anticipación a contingencias fiscales.",
+    icon: "lucide:check-circle-2",
+  },
+  {
+    titulo: "Especialización en Personas Físicas",
+    descripcion:
+      "Conocimiento y aplicación del marco fiscal y legal aplicable.",
+    icon: "lucide:landmark",
+  },
+  {
+    titulo: "Respaldo Integral",
+    descripcion:
+      "Consultoría completa en un solo lugar.",
+    icon: "lucide:handshake",
+  },
+];
+
+const valoresEmpresa = [
+  {
+    titulo: "Cumplimiento",
+    descripcion:
+      "Aseguramos el cumplimiento correcto y puntual de tus obligaciones fiscales.",
+    icon: "lucide:shield-check",
+  },
+  {
+    titulo: "Estrategia",
+    descripcion:
+      "Analizamos tu situación y diseñamos soluciones fiscales a medida.",
+    icon: "lucide:target",
+  },
+  {
+    titulo: "Prevención",
+    descripcion:
+      "Ayudamos a reducir riesgos y evitar problemas futuros con el SAT.",
+    icon: "lucide:umbrella",
+  },
+];
 ---
 
 <Layout title="J&R Consultores">
   <Navbar />
-  
-  <section id="inicio" class="py-30 px-70 text-center">
-    <h1 class="mb-5 text-4xl font-bold tracking-tight text-heading md:text-5xl lg:text-6xl">Soluciones fiscales claras para desiciones inteligentes</h1>
-    <p class="text-lg font-normal text-body lg:text-2xl">Asesoria fiscal y administrativa para personas físicas y morales con un enfoque preventivo y estratégico.</p>
-    <button type="button" class="text- bg-brand box-border border border-transparent hover:bg-brand-strong focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-full text-sm px-4 py-2.5 focus:outline-none">Agenda una consulta</button>
+
+  <section
+    id="inicio"
+    class="relative pt-44 pb-24 py-24 lg:pb-32 px-6 overflow-hidden flex flex-col items-center"
+  >
+    <div class="absolute inset-0 z-0 pointer-events-none">
+      <Image
+        src={imagen1}
+        alt="Consultoría fiscal y decisiones inteligentes"
+        class="w-full h-full object-cover"
+        loading="eager"
+      />
+    </div>
+
+    <div class="absolute inset-0 z-0 bg-slate-900/75 pointer-events-none"></div>
+
+    <div
+      class="relative z-10 max-w-5xl mx-auto text-center flex flex-col items-center"
+    >
+      <div
+        data-aos="fade-up"
+        class="mb-8 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-50/10 border border-blue-200/20 text-blue-100 text-sm font-bold tracking-wide backdrop-blur-sm"
+      >
+        <span class="relative flex h-2.5 w-2.5">
+          <span
+            class="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-300 opacity-75"
+          ></span>
+          <span
+            class="relative inline-flex rounded-full h-2.5 w-2.5 bg-blue-400"
+          ></span>
+        </span>
+        Asesoría 100% Especializada
+      </div>
+
+      <h1
+        data-aos="fade-up"
+        data-aos-delay="100"
+        class="mb-6 text-5xl md:text-6xl lg:text-7xl font-black tracking-tight text-white leading-[1.1]"
+      >
+        Soluciones fiscales claras para <br class="hidden md:block" />
+        <span
+          class="text-transparent bg-clip-text bg-gradient-to-r from-blue-300 to-blue-500"
+          >decisiones inteligentes</span
+        >
+      </h1>
+
+      <p
+        data-aos="fade-up"
+        data-aos-delay="200"
+        class="mb-10 max-w-2xl text-lg md:text-xl text-slate-200 font-medium leading-relaxed"
+      >
+        Asesoría fiscal y administrativa para personas físicas y morales con un
+        enfoque preventivo y estratégico.
+      </p>
+
+      <div 
+        data-aos="fade-up"
+        data-aos-delay="300"
+        class="flex flex-col sm:flex-row gap-4 w-full sm:w-auto"
+      >
+        <a
+          href="#contacto"
+          class="inline-flex justify-center items-center gap-2 bg-white hover:bg-blue-50 text-slate-900 font-bold py-4 px-8 rounded-xl transition-all duration-300 shadow-xl shadow-black/20 hover:shadow-blue-500/30 active:scale-95"
+        >
+          Agendar una consulta
+          <Icon name="lucide:calendar-clock" class="w-5 h-5" />
+        </a>
+
+        <a
+          href="#servicios"
+          class="inline-flex justify-center items-center gap-2 bg-slate-900/40 hover:bg-slate-900/60 text-white font-bold py-4 px-8 rounded-xl border border-white/20 transition-all backdrop-blur-md"
+        >
+          Conocer servicios
+          <Icon name="lucide:briefcase" class="w-5 h-5" />
+        </a>
+      </div>
+    </div>
   </section>
 
-  <section id="" class="max-w-5xl mx-auto px-4 py-12">
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-      <Card 
-        title="Consultoría Legal" 
-        description="Protegemos tus intereses con el mejor equipo legal." 
-      />
-      <Card 
-        title="Gestión Contable" 
-        description="Llevamos tus números al siguiente nivel de eficiencia." 
-      />
-      <Card 
-        title="Estrategia Digital" 
-        description="Hacemos que tu marca destaque en el mundo moderno." 
-      />
+  <section id="nosotros" class="w-full bg-slate-50 py-16 lg:py-24">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+        
+        <div data-aos="fade-right" class="text-center lg:text-left">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-100 text-blue-700 text-xs font-bold uppercase tracking-wider mb-4">
+            Nuestra Identidad
+          </div>
+          <h2 class="text-3xl md:text-4xl lg:text-5xl font-black text-slate-900 mb-6 leading-tight">
+            Expertos en <span class="text-blue-600">tranquilidad</span> fiscal.
+          </h2>
+  
+          <div class="flex items-center justify-center lg:justify-start gap-4 border-l-0 lg:border-l-4 border-blue-600 pl-0 lg:pl-6 py-2">
+            <div class="bg-blue-600 p-2 rounded-lg text-white">
+              <Icon name="lucide:clock-check" class="w-6 h-6 lg:w-8 lg:h-8" />
+            </div>
+            <p class="text-sm text-slate-500 font-bold uppercase tracking-wide text-left">
+              Respuesta inmediata y <br class="hidden sm:block"/> seguimiento personalizado
+            </p>
+          </div>
+        </div>
+  
+        <div class="grid grid-cols-1 gap-4 md:gap-6" data-aos="fade-left">
+          {valoresEmpresa.map((valor) => (
+            <div class="flex flex-row items-start gap-5 p-5 md:p-6 rounded-2xl bg-white shadow-sm border border-slate-100 hover:shadow-md hover:border-blue-100 transition-all duration-300">
+              <div class="flex-shrink-0 w-12 h-12 rounded-xl bg-blue-50 flex items-center justify-center text-blue-600 group-hover:bg-blue-600 group-hover:text-white transition-colors">
+                <Icon name={valor.icon} class="w-6 h-6" />
+              </div>
+              <div class="flex-1">
+                <h3 class="font-bold text-slate-900 text-lg mb-1">{valor.titulo}</h3>
+                <p class="text-slate-600 text-sm leading-relaxed">{valor.descripcion}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+  
+      </div>
+    </div>
+  </section>
+
+  <section id="servicios" class="py-1 bg-hw overflow-hidden">
+    <div class="max-w-7xl mx-auto px-6 text-center mb-12">
+      <h2 class="text-4xl lg:text-5xl font-extrabold text-slate-900 mb-4">
+        Nuestros Servicios
+      </h2>
+      <div class="h-1.5 w-24 bg-blue-600 rounded-full mx-auto"></div>
+    </div>
+    
+    <div class="max-w-full overflow-hidden">
+        <Carousel3D items={serviciosFiscales} />
+    </div>
+  </section>
+
+  <section id="por-que-nosotros" class="relative w-full bg-slate-50 py-24 lg:py-32 overflow-hidden">
+    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-[radial-gradient(#e2e8f0_1px,transparent_1px)] [background-size:20px_20px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_70%,transparent_100%)] opacity-30"></div>
+  
+    <div class="relative z-10 max-w-7xl mx-auto px-6">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+        
+        <div class="lg:col-span-7" data-aos="fade-right">
+          <h2 class="text-4xl lg:text-5xl font-black text-slate-900 leading-tight mb-8">
+            ¿Por qué confiar en <span class="text-blue-600">J&R Consultores</span>?
+          </h2>
+  
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {puntosElegirnos.map((p, index) => (
+              <div 
+                class="group p-6 rounded-2xl bg-slate-50 border border-slate-100 hover:bg-white hover:shadow-xl hover:shadow-blue-500/5 transition-all duration-300"
+                data-aos="fade-up"
+                data-aos-delay={index * 100}
+              >
+                <div class="w-12 h-12 rounded-xl bg-blue-600 flex items-center justify-center text-white mb-4 group-hover:scale-110 transition-transform">
+                  <Icon name={p.icon} class="w-6 h-6" />
+                </div>
+                <h3 class="text-xl font-bold text-slate-900 mb-2">{p.titulo}</h3>
+                <p class="text-slate-600 leading-relaxed text-sm">
+                  {p.descripcion}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+  
+        <div class="lg:col-span-5 relative" data-aos="fade-left">
+          <div class="relative rounded-[2.5rem] overflow-hidden shadow-2xl z-10 border-8 border-white">
+            <Image
+              src={imagen2}
+              alt="Excelencia en consultoría"
+              class="w-full h-[500px] object-cover"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-900/40 to-transparent"></div>
+          </div>
+          
+          <div class="absolute -bottom-6 -left-6 bg-blue-600 text-white p-8 rounded-2xl shadow-xl z-20 max-w-[240px] hidden md:block">
+            <Icon name="lucide:trending-up" class="w-8 h-8 mb-3 text-blue-200" />
+            <p class="text-lg font-bold leading-tight">
+              Impulsamos tu tranquilidad fiscal con <span class="text-blue-200">experiencia real</span>.
+            </p>
+          </div>
+        </div>
+  
+      </div>
     </div>
   </section>
   
+  <ContactForm />
   <Footer />
 </Layout>
