@@ -14,8 +14,8 @@ export default defineConfig({
 
   integrations: [icon({
     include: {
-      mdi: ['*'], // Esto permite usar cualquier icono de la colección MDI
-      lucide: ['*'], // Si decides usar los que te pasé antes
+      mdi: ['*'],
+      lucide: ['*'], 
     },
   }), react()],
   output: 'static',
