@@ -23,4 +23,12 @@ export default defineConfig({
   }), react(), sitemap()],
   output: 'static',
   adapter: netlify(),
+  
+  vite: {
+    build: {
+      assetsInlineLimit: 4096,
+    }
+  }
 });
+
+  
