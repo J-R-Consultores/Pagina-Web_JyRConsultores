@@ -54,34 +54,80 @@ import logoImg from '../assets/LOGO_5.png';
   import AOS from 'aos';
   import 'aos/dist/aos.css'
 
-  // Inicializar AOS
   AOS.init({
     duration: 1000,
     once: true,
   });
 
+  // Lógica de cambio de tamaño del navbar al hacer scroll
   const nav = document.querySelector('#main-nav') as HTMLElement;
   const logo = document.querySelector('#nav-logo') as HTMLElement;
 
   if (nav && logo) {
     window.addEventListener('scroll', () => {
       if (window.scrollY > 50) {
-        // Estado contraído: py-2 y fondo un poco más sólido o con sombra
         nav.classList.replace('py-5', 'py-2');
         nav.classList.add('shadow-xl', 'backdrop-blur-sm');
         logo.classList.replace('h-28', 'h-14');
       } else {
-        // Estado original
         nav.classList.replace('py-2', 'py-5');
         nav.classList.remove('shadow-xl', 'backdrop-blur-sm');
         logo.classList.replace('h-14', 'h-28');
       }
     });
   }
+
+  const setupSmoothScroll = () => {
+    const links = document.querySelectorAll('a[href^="#"]');
+    
+    links.forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const targetId = link.getAttribute('href');
+        if (!targetId || targetId === '#') return;
+
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+          const navOffset = 100; 
+          const targetPosition = targetElement.getBoundingClientRect().top + window.scrollY - navOffset;
+          const startPosition = window.scrollY;
+          const distance = targetPosition - startPosition;
+          const duration = 1000;
+          let start: number | null = null;
+
+          const step = (timestamp: number) => {
+            if (!start) start = timestamp;
+            const progress = timestamp - start;
+            const percentage = Math.min(progress / duration, 1);
+            
+            const easing = percentage < 0.5 
+              ? 4 * percentage * percentage * percentage 
+              : 1 - Math.pow(-2 * percentage + 2, 3) / 2;
+
+            window.scrollTo(0, startPosition + distance * easing);
+
+            if (progress < duration) {
+              window.requestAnimationFrame(step);
+            }
+          };
+          window.requestAnimationFrame(step);
+        }
+      });
+    });
+  };
+
+  setupSmoothScroll();
+  document.addEventListener('astro:page-load', setupSmoothScroll);
 </script>
 
-<style>
-  .group:hover span {
-    color: #e0f2fe;
+<style is:global>
+  #inicio, #nosotros, #servicios, #contacto {
+    scroll-margin-top: 100px;
+  }
+  
+  @media (max-width: 768px) {
+    section[id] {
+      scroll-margin-top: 80px;
+    }
   }
 </style>
